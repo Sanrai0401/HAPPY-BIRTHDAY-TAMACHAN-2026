@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10101f">
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .title-name {
+      font-size: 2.2rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      margin: 14px 0;
+    }
+  </style>
+</head>
+<body>
+  <main id="game">
+
+    <!-- タイトル画面 -->
+    <section id="title-screen" class="screen active">
+      <div class="title-card">
+        <p class="eyebrow">A SPECIAL DAY FOR YOU</p>
+        <div class="title-stars">✦　♡　✦</div>
+        <h1>Happy Birthday!</h1>
+        <p class="title-name">たまちゃん</p>
+        <p>今日は特別な日。</p>
+        <p>小さなサプライズを用意したよ。</p>
+        <button id="start-button" class="primary-button">
+          ゲームスタート ♡
+        </button>
+      </div>
+    </section>
+
+    <!-- モード選択画面 -->
+    <section id="mode-screen" class="screen">
+      <div class="panel">
+        <p class="eyebrow">CHOOSE YOUR GAME</p>
+        <h1>遊ぶモードを選んでね</h1>
+
+        <div class="mode-grid">
+          <button class="mode-card" data-mode="birthday">
+            <span>🎂</span>
+            <b>バースデーモード</b>
+            <small>ろうそく → プレゼント → 手紙</small>
+          </button>
+
+          <button class="mode-card" data-mode="time">
+            <span>⏱️</span>
+            <b>タイムアタック</b>
+            <small>20本を消すまでの時間に挑戦</small>
+          </button>
+
+          <button class="mode-card" data-mode="endless">
+            <span>✨</span>
+            <b>エンドレス</b>
+            <small>制限なしで何本消せるかな？</small>
+          </button>
+
+          <button class="mode-card" data-mode="breath">
+            <span>🌬️</span>
+            <b>ブレスモード</b>
+            <small>マイクに息を吹いて消そう</small>
+          </button>
+        </div>
+
+        <button class="subtle-button" id="back-title">
+          タイトルに戻る
+        </button>
+      </div>
+    </section>
+
+    <!-- ゲーム画面 -->
+    <section id="game-screen" class="screen game-screen">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow" id="mode-eyebrow">BIRTHDAY MODE</p>
+          <h1 id="game-heading">ろうそくを消してね！</h1>
+          <p id="game-instruction">
+            20本のろうそくを全部消そう。
+          </p>
+        </div>
+
+        <div class="stats">
+          <div>
+            <small id="stat-label">残り</small>
+            <strong id="stat-value">20本</strong>
+          </div>
+          <div>
+            <small>時間</small>
+            <strong id="timer-value">0.0秒</strong>
+          </div>
+        </div>
+      </header>
+
+      <div id="playfield">
+        <div class="ambient-glow"></div>
+        <div id="candles"></div>
+        <div id="cake" aria-hidden="true">🎂</div>
+      </div>
+
+      <p id="game-message" class="game-message">
+        ろうそくをタップして消してね！
+      </p>
+
+      <div class="game-controls">
+        <button id="mic-button" class="primary-button hidden">
+          🎙️ マイクを使う
+        </button>
+
+        <button id="stop-button" class="subtle-button hidden">
+          終了する
+        </button>
+
+        <button id="game-back-button" class="subtle-button">
+          モード選択に戻る
+        </button>
+      </div>
+
+      <p id="mic-note" class="small-note hidden">
+        マイクの使用を許可してね。息以外の大きな音にも反応する場合があります。
+      </p>
+    </section>
+
+    <!-- プレゼント画面 -->
+    <section id="gift-screen" class="screen">
+      <div class="panel">
+        <p class="eyebrow">STEP 2</p>
+        <h1>プレゼントを探そう！</h1>
+        <p>3つの箱の中にプレゼントが隠れているよ。</p>
+
+        <div id="gift-area">
+          <button class="gift-box" data-index="0">🎁</button>
+          <button class="gift-box" data-index="1">🎁</button>
+          <button class="gift-box" data-index="2">🎁</button>
+        </div>
+
+        <p id="gift-message">気になる箱を選んでね！</p>
+        <p id="gift-count">プレゼント発見：0 / 3</p>
+      </div>
+    </section>
+
+    <!-- 手紙画面 -->
+    <section id="letter-screen" class="screen">
+      <div class="panel letter-panel">
+        <p class="eyebrow">FINAL SURPRISE</p>
+        <h1>最後のサプライズ</h1>
+        <p>たまちゃんへの手紙が届いているよ。</p>
+
+        <button id="open-letter" class="primary-button">
+          💌 手紙を開く
+        </button>
+
+        <article id="letter" class="letter hidden">
+          <h2>たまちゃんへ</h2>
+          <p>お誕生日おめでとう！</p>
+          <p>
+            今日はたまちゃんにとって、
+            笑顔いっぱいの素敵な一日になりますように。
+          </p>
+          <p>
+            一緒に過ごす時間や、映画を見たり、
+            何気ない話をしたりする時間が大切です。
+          </p>
+          <p>
+            いつもありがとう。
+            これからもたくさん思い出を作っていこうね。
+          </p>
+          <p class="letter-end">
+            生まれてきてくれてありがとう。
+          </p>
+          <p class="signature">大好きだよ ♡</p>
+        </article>
+
+        <p id="ending-message" class="hidden">
+          最後まで遊んでくれてありがとう！♡
+        </p>
+
+        <button id="letter-mode-button" class="subtle-button hidden">
+          モード選択に戻る
+        </button>
+      </div>
+    </section>
+
+    <!-- 結果画面 -->
+    <section id="result-screen" class="screen">
+      <div class="panel result-panel">
+        <p class="eyebrow" id="result-eyebrow">RESULT</p>
+        <div id="result-icon">🏆</div>
+        <h1 id="result-title">おめでとう！</h1>
+        <p id="result-description">
+          最後まで遊んでくれてありがとう。
+        </p>
+
+        <div id="result-stats"></div>
+
+        <div class="result-actions">
+          <button id="retry-button" class="primary-button">
+            もう一度遊ぶ
+          </button>
+
+          <button id="result-mode-button" class="subtle-button">
+            モード選択に戻る
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="sound.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
